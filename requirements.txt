@@ -1,1 +1,5 @@
-conda activate myenv
+Flask==2.3.3
+Flask-Cors==4.0.0
+gunicorn==21.2.0
+mysql-connector-python==8.3.0
+requests==2.31.0
