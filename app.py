@@ -6,7 +6,7 @@ from mysql.connector import Error
 app = Flask(__name__)
 
 # Configure CORS: Allow only specific origins in production (for example)
-CORS(app, resources={r"/api/*": {"origins": "https://sales-app-frontend.vercel.app"}})
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 # For production, restrict origins like:
 # CORS(app, resources={r"/api/*": {"origins": ["http://your-frontend-domain.com"]}})
 
