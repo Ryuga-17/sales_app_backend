@@ -11,7 +11,7 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
-DATABASE_URL = os.getenv("postgresql://postgres:[Lothar@17@div]@db.ugmfnqafvzgucazddrbl.supabase.co:5432/postgres")
+DATABASE_URL = os.getenv("postgresql://postgres:[YOUR-PASSWORD]@db.ugmfnqafvzgucazddrbl.supabase.co:5432/postgres")
 
 def get_db_connection():
     try:
