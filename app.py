@@ -11,18 +11,14 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
+DATABASE_URL = os.getenv("postgresql://postgres:[YOUR-PASSWORD]@db.ugmfnqafvzgucazddrbl.supabase.co:5432/postgres")
+
 def get_db_connection():
     try:
-        conn = psycopg2.connect(
-            host=os.getenv("SUPABASE_HOST"),
-            dbname=os.getenv("SUPABASE_DB"),
-            user=os.getenv("SUPABASE_USER"),
-            password=os.getenv("SUPABASE_PASSWORD"),
-            port=os.getenv("SUPABASE_PORT", 5432)
-        )
+        conn = psycopg2.connect(DATABASE_URL)
         return conn
     except Exception as e:
-        return str(e)
+        return jsonify({"error": str(e)}), 500
 
 @app.route('/')
 def home():
