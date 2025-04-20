@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: sales-management-backend
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    envVars:
+      - key: SUPABASE_HOST
+        fromEnvVar: SUPABASE_HOST
+      - key: SUPABASE_DB
+        fromEnvVar: SUPABASE_DB
+      - key: SUPABASE_USER
+        fromEnvVar: SUPABASE_USER
+      - key: SUPABASE_PASSWORD
+        fromEnvVar: SUPABASE_PASSWORD
+      - key: SUPABASE_PORT
+        fromEnvVar: SUPABASE_PORT
