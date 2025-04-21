@@ -13,6 +13,8 @@ CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 DATABASE_URL = os.getenv("SUPABASE_DATABASE_URL")
 
+
+
 def get_db_connection():
     try:
         conn = psycopg2.connect(DATABASE_URL)
@@ -23,6 +25,14 @@ def get_db_connection():
 @app.route('/')
 def home():
     return "Sales Management Backend is Running (Supabase Edition)"
+    
+@app.route('/api/health', methods=['GET'])
+def health_check():
+    db, error = get_db_connection()
+    if db is None:
+        return jsonify({"status": "fail", "error": error}), 500
+    db.close()
+    return jsonify({"status": "ok", "message": "Supabase DB connected!"}), 200
 
 @app.route('/api/orders', methods=['GET'])
 def get_orders():
