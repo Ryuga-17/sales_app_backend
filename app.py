@@ -20,7 +20,8 @@ def get_db_connection():
         conn = psycopg2.connect(DATABASE_URL)
         return conn
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        # Instead of returning a tuple, raise an exception
+        raise RuntimeError(f"Database connection failed: {e}")
 
 @app.route('/')
 def home():
